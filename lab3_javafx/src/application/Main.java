@@ -25,12 +25,10 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("login.css").toExternalForm());
 			//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
-			// obtain main controller
-			TopTabView wc = (TopTabView) loader.getController();
-			wc.setDatabase(db);
+
 
 			// opening database connection
-			/* --- TODO: change xxx to your user name, yyy to your passowrd --- */	        
+			/* --- TODO: change xxx to your user name, yyy to your passowrd --- */
 			if(!db.openConnection("db110", "stab")) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Database error");
@@ -38,7 +36,11 @@ public class Main extends Application {
 				alert.setContentText("Could not connect to the database! Check console for details.");
 				alert.showAndWait();
 			}
-			
+
+			// obtain main controller
+			TopTabView wc = (TopTabView) loader.getController();
+			wc.setDatabase(db);
+
 			// show the main window
 			primaryStage.setTitle("Movie Booking System");
 			primaryStage.setScene(scene);
