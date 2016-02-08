@@ -85,9 +85,12 @@ public class BookingTab {
 					if (crtShow.freeSeats == 0) {
 						report("No seats available");
 					} else {
-						db.bookTicket(movie, date);
-						fillShow(movie, date);
-						report("Booked one ticket to "+movie+" on "+date);
+						if(db.bookTicket(movie, date)) {
+							fillShow(movie, date);
+							report("Booked one ticket to " + movie + " on " + date);
+						} else {
+							report("Booking failed, you already have a booked ticket" + "\n" + " to this performance" );
+						}
 					}
 
 

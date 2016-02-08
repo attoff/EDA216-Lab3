@@ -3,6 +3,7 @@ package application;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Database is a class that specifies the interface to the
  * movie database. Uses JDBC and the MySQL Connector/J driver.
@@ -38,13 +39,11 @@ public class Database {
             conn = DriverManager.getConnection
                     ("jdbc:mysql://puccini.cs.lth.se/" + userName,
                             userName, password);
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println(e);
             e.printStackTrace();
             return false;
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             System.err.println(e);
             e.printStackTrace();
             return false;
@@ -59,8 +58,7 @@ public class Database {
         try {
             if (conn != null)
                 conn.close();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         conn = null;
@@ -119,7 +117,6 @@ public class Database {
         }
 
 
-
         return new Show(mTitle, mDate, mVenue, mFreeSeats);
     }
 
@@ -132,7 +129,7 @@ public class Database {
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            if(rs.next()) {
+            if (rs.next()) {
                 return true;
             }
         } catch (SQLException e) {
@@ -219,11 +216,7 @@ public class Database {
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
             return true;
-
-
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
         return false;
     }
